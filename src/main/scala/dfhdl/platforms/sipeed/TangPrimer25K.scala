@@ -11,23 +11,6 @@ import scala.annotation.targetName
 import dfhdl.MHz
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
-/*       TangPrimer25K Base Board + Core Board
-┌───┬─────────────────────────────────────────────────┬───┐
-│ J3│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│   │
-│   └─────────────────────────────────────────────────┘   │
-│       █Power   ┌────────────────────┐             S1╭─╮ │
-├─────┐ █Ready   │   FPGA Core Board  │               ├─┤ │
-│ <   │ █Done    │                    │             S2╰─╯ │
-│     │          │                    │               ╭───┤
-│ <   │USB       │                    │  USB Debugger │   │
-├─────┘Host      │      TANG25K       │               ╰───┤
-│                └────────────────────┘                   │
-│╔══════════════╗     ╔══════════════╗    ╔══════════════╗│
-│║     Pmod     ║     ║     Pmod     ║    ║     Pmod     ║│
-│║      J6      ║     ║      J5      ║    ║      J4      ║│
-└╚══════════════╝─────╚══════════════╝────╚══════════════╝┘
- */
-
 class TangPrimer25KCore extends Board:
   val fpga = GW5A_LV25MG121(speedGrade = "C1/I0", _deviceVersion = "A")
   object nets:
@@ -357,6 +340,22 @@ class TangPrimer25KBase extends Board:
   buttons // touch to force execution
 end TangPrimer25KBase
 
+/*       TangPrimer25K Base Board + Core Board
+┌───┬─────────────────────────────────────────────────┬───┐
+│ J3│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│   │
+│   └─────────────────────────────────────────────────┘   │
+│       █Power   ┌────────────────────┐             S1╭─╮ │
+├─────┐ █Ready   │   FPGA Core Board  │               ├─┤ │
+│ <   │ █Done    │                    │             S2╰─╯ │
+│     │          │                    │               ╭───┤
+│ <   │USB       │                    │  USB Debugger │   │
+├─────┘Host      │      TANG25K       │               ╰───┤
+│                └────────────────────┘                   │
+│╔══════════════╗     ╔══════════════╗    ╔══════════════╗│
+│║     Pmod     ║     ║     Pmod     ║    ║     Pmod     ║│
+│║      J6      ║     ║      J5      ║    ║      J4      ║│
+└╚══════════════╝─────╚══════════════╝────╚══════════════╝┘
+ */
 class TangPrimer25K extends DevBoard:
   val core = TangPrimer25KCore()
   val base = TangPrimer25KBase()
