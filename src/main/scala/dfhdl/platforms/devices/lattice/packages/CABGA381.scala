@@ -1,4 +1,4 @@
-package dfhdl.platformsdevices.lattice.packages
+package dfhdl.platforms.devices.lattice.packages
 import dfhdl.platforms.devices.lattice.*
 import dfhdl.hw.constraints.io
 
