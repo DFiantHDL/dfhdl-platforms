@@ -2,8 +2,8 @@ package dfhdl.platforms.devices.lattice.packages
 import dfhdl.platforms.devices.lattice.*
 import dfhdl.hw.constraints.io
 
-trait CABGA381 extends dfhdl.platforms.devices.Package:
-  final lazy val packageName: String = "CABGA381"
+trait BG381 extends dfhdl.platforms.devices.Package:
+  final lazy val packageName: String = "BG381"
 
   class Bank0 extends Bank:
     object pins:
@@ -602,4 +602,4 @@ trait CABGA381 extends dfhdl.platforms.devices.Package:
       export bank8.byName.*
     end byName
   end ios
-end CABGA381
+end BG381

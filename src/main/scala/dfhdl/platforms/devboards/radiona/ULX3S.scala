@@ -10,6 +10,7 @@ import dfhdl.*
   *   J5 power selection. 2.5V or 3.3V. IMPORTANT: Only modify this parameter if you modified the
   *   solder on J5 to select 2.5V instead of 3.3V.
   */
+@toolOptions("openFPGALoader" -> "-b ulx3s")
 class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   final val fpga = LFE5U_85F_6BG381C()
   object nets:
