@@ -20,13 +20,21 @@ class NexysA7 extends DevBoard:
     sizeLimitMB   = 16
   )
   final val fpga = xc7a100tcsg324(speedGrade = "1")
-  val Vcc        = Power(3.3)
-  Vcc <> fpga.bank0
-  Vcc <> fpga.bank14
-  Vcc <> fpga.bank15
-  Vcc <> fpga.bank16
-  Vcc <> fpga.bank34
-  Vcc <> fpga.bank35
+
+  //////////////////////////////////////////
+  // Power
+  //////////////////////////////////////////
+  object power:
+    val Vcc = Power(3.3)
+    Vcc <> fpga.bank0
+    Vcc <> fpga.bank14
+    Vcc <> fpga.bank15
+    Vcc <> fpga.bank16
+    Vcc <> fpga.bank34
+    Vcc <> fpga.bank35
+  end power
+  power // touch to force execution
+
   //////////////////////////////////////////
   // Pmods
   //////////////////////////////////////////
@@ -86,8 +94,9 @@ class NexysA7 extends DevBoard:
   // Clocks
   //////////////////////////////////////////
   object clocks:
-    val CLK100MHZ = Oscillator(100.MHz)
-    CLK100MHZ <> fpga.ios.E3
+    @io(standard = io.Standard.LVCMOS)
+    val CLK_100MHZ = Oscillator(100.MHz)
+    CLK_100MHZ <> fpga.ios.E3
   clocks // touch to force execution
 
   //////////////////////////////////////////
