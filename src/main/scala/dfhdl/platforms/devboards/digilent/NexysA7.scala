@@ -16,7 +16,7 @@ class NexysA7 extends DevBoard:
   )
   @deviceConfig(
     flashPartName = "s25fl128sxxxxxx0-spi-x1_x2_x4",
-    interface     = deviceConfig.Interface.SPIx4,
+    interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
     sizeLimitMB   = 16
   )
   final val fpga = xc7a100tcsg324(speedGrade = "1")
