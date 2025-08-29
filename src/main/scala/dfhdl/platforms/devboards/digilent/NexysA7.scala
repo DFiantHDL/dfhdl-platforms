@@ -11,9 +11,8 @@ import dfhdl.platforms.devices.Bank
 @toolOptions("openFPGALoader" -> "-b nexys_a7_100")
 class NexysA7 extends DevBoard:
   @deviceProperties(
-    "CONFIG_VOLTAGE"             -> "3.3",
-    "CFGBVS"                     -> "VCCO",
-    "BITSTREAM.GENERAL.COMPRESS" -> "TRUE"
+    "CONFIG_VOLTAGE" -> "3.3",
+    "CFGBVS"         -> "VCCO"
   )
   @deviceConfig(
     flashPartName = "s25fl128sxxxxxx0-spi-x1_x2_x4",
