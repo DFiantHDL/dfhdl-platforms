@@ -123,23 +123,23 @@ class NexysA7 extends DevBoard:
   // Switches
   //////////////////////////////////////////
   object switches:
-    val SW = IOBus.fill(16)(SwitchUD())
-    SW(0)  <> fpga.ios.J15
-    SW(1)  <> fpga.ios.L16
-    SW(2)  <> fpga.ios.M13
-    SW(3)  <> fpga.ios.R15
-    SW(4)  <> fpga.ios.R17
-    SW(5)  <> fpga.ios.T18
-    SW(6)  <> fpga.ios.U18
-    SW(7)  <> fpga.ios.R13
-    SW(8)  <> fpga.ios.T8
-    SW(9)  <> fpga.ios.U8
-    SW(10) <> fpga.ios.R16
-    SW(11) <> fpga.ios.T13
-    SW(12) <> fpga.ios.H6
-    SW(13) <> fpga.ios.U12
-    SW(14) <> fpga.ios.U11
-    SW(15) <> fpga.ios.V10
+    val SW_BUS = IOBus.fill(16)(SwitchUD())
+    SW_BUS(0)  <> fpga.ios.J15
+    SW_BUS(1)  <> fpga.ios.L16
+    SW_BUS(2)  <> fpga.ios.M13
+    SW_BUS(3)  <> fpga.ios.R15
+    SW_BUS(4)  <> fpga.ios.R17
+    SW_BUS(5)  <> fpga.ios.T18
+    SW_BUS(6)  <> fpga.ios.U18
+    SW_BUS(7)  <> fpga.ios.R13
+    SW_BUS(8)  <> fpga.ios.T8
+    SW_BUS(9)  <> fpga.ios.U8
+    SW_BUS(10) <> fpga.ios.R16
+    SW_BUS(11) <> fpga.ios.T13
+    SW_BUS(12) <> fpga.ios.H6
+    SW_BUS(13) <> fpga.ios.U12
+    SW_BUS(14) <> fpga.ios.U11
+    SW_BUS(15) <> fpga.ios.V10
   end switches
   switches // touch to force execution
   //////////////////////////////////////////
@@ -147,23 +147,23 @@ class NexysA7 extends DevBoard:
   //////////////////////////////////////////
   object leds:
     @timing.ignore(maxFreqMinPeriod = 100.Hz)
-    val LD = IOBus.fill(16)(Led())
-    LD(0)  <> fpga.ios.H17
-    LD(1)  <> fpga.ios.K15
-    LD(2)  <> fpga.ios.J13
-    LD(3)  <> fpga.ios.N14
-    LD(4)  <> fpga.ios.R18
-    LD(5)  <> fpga.ios.V17
-    LD(6)  <> fpga.ios.U17
-    LD(7)  <> fpga.ios.U16
-    LD(8)  <> fpga.ios.V16
-    LD(9)  <> fpga.ios.T15
-    LD(10) <> fpga.ios.U14
-    LD(11) <> fpga.ios.T16
-    LD(12) <> fpga.ios.V15
-    LD(13) <> fpga.ios.V14
-    LD(14) <> fpga.ios.V12
-    LD(15) <> fpga.ios.V11
+    val LED_BUS = IOBus.fill(16)(Led())
+    LED_BUS(0)  <> fpga.ios.H17
+    LED_BUS(1)  <> fpga.ios.K15
+    LED_BUS(2)  <> fpga.ios.J13
+    LED_BUS(3)  <> fpga.ios.N14
+    LED_BUS(4)  <> fpga.ios.R18
+    LED_BUS(5)  <> fpga.ios.V17
+    LED_BUS(6)  <> fpga.ios.U17
+    LED_BUS(7)  <> fpga.ios.U16
+    LED_BUS(8)  <> fpga.ios.V16
+    LED_BUS(9)  <> fpga.ios.T15
+    LED_BUS(10) <> fpga.ios.U14
+    LED_BUS(11) <> fpga.ios.T16
+    LED_BUS(12) <> fpga.ios.V15
+    LED_BUS(13) <> fpga.ios.V14
+    LED_BUS(14) <> fpga.ios.V12
+    LED_BUS(15) <> fpga.ios.V11
   end leds
   leds // touch to force execution
   //////////////////////////////////////////

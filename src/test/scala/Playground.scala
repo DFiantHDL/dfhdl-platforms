@@ -1,50 +1,62 @@
-import dfhdl.*
-// given options.CompilerOptions.LogLevel = options.CompilerOptions.LogLevel.TRACE
-given options.ElaborationOptions.DefaultRstCfg = None
-// given options.CompilerOptions.Backend = backends.verilog.v95
-import dfhdl.platforms.devboards.digilent.NexysA7
-import dfhdl.platforms.devboards.sipeed.TangPrimer25K
-import dfhdl.platforms.pmods.sipeed.PMOD_LEDx8
-import dfhdl.platforms.pmods.sipeed.PMOD_BTN4x4
-import dfhdl.platforms.pmods.digilent.Pmod8LD
-import dfhdl.platforms.resources.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
+import dfhdl.*
+import dfhdl.platforms.resources.*
+given options.ProgrammerOptions.Tool           = tools.programmers.foss
+given options.ElaborationOptions.DefaultRstCfg = None
 
-@top class ID extends RTDesign:
-  val B1, B2, B3, B4     = Bit <> IN
-  val y11, y12, y13, y14 = Bit <> OUT
-  val y21, y22, y23, y24 = Bit <> OUT
-  y11 <> B1
-  y12 <> B2
-  y13 <> B3
-  y14 <> B4
-  y21 <> B1
-  y22 <> B2
-  y23 <> B3
-  y24 <> B4
-  // resource connections
-  val devBoard                        = TangPrimer25K()
-  val pmodLED1                        = PMOD_LEDx8()
-  val pmodLED2                        = Pmod8LD()
-  val pmodBTN                         = PMOD_BTN4x4()
-  given ExpectedActiveState[Led]      = Led.On
-  given ExpectedActiveState[Button]   = Button.Pressed
-  given ExpectedActiveState[SwitchNS] = SwitchNS.North
-  pmodLED1 <> devBoard.pmods.J6
-  pmodLED2 <> devBoard.pmods.J4
-  pmodBTN  <> devBoard.pmods.J5
-  y11      <> pmodLED1.LD(7)
-  y12      <> pmodLED1.LD(6)
-  y13      <> pmodLED1.LD(5)
-  y14      <> pmodLED1.LD(4)
-  y21      <> pmodLED2.LD(0)
-  y22      <> pmodLED2.LD(1)
-  y23      <> pmodLED2.LD(2)
-  y24      <> pmodLED2.LD(3)
-  B1       <> pmodBTN.S1
-  B2       <> pmodBTN.S2
-  B3       <> pmodBTN.S3
-  B4       <> pmodBTN.S4
-end ID
+object common:
+  class Demo extends RTDesign:
+    val clk     = Clk                <> IN
+    val leds    = Bits(8)            <> OUT.REG init b"00000001"
+    val dir     = Bit                <> IN
+    val cycles  = 2500000
+    val counter = UInt.until(cycles) <> VAR.REG init 0
 
-@main def main = println("hello")
+    if (counter == cycles - 1)
+      counter.din := 0
+      if (dir.reg(2, init = 0))
+        leds.din := (leds(6, 0), leds(7))
+      else
+        leds.din := (leds(0), leds(7, 1))
+    else counter.din := counter + 1
+
+    given ExpectedActiveState[Led]    = Led.On
+    given ExpectedActiveState[Button] = Button.Pressed
+  end Demo
+end common
+
+object ulx3s:
+  import dfhdl.platforms.devboards.radiona.ULX3S
+  given options.CompilerOptions.Backend = backends.verilog.v2001
+  @top class Demo extends common.Demo:
+    // resource connections
+    val devBoard = ULX3S()
+    clk  <> devBoard.clocks.Clk_25MHz
+    leds <> devBoard.leds.LED
+    dir  <> devBoard.buttons.BTN_F1
+  end Demo
+
+object nexysA7:
+  import dfhdl.platforms.devboards.digilent.NexysA7
+  import dfhdl.platforms.pmods.sipeed.PMOD_LEDx8
+  given options.CompilerOptions.Backend = backends.vhdl.v2008
+  @top class Demo extends common.Demo:
+    // resource connections
+    val devBoard = NexysA7()
+    val ledsPmod = PMOD_LEDx8()
+    ledsPmod <> devBoard.pmods.JB
+    clk      <> devBoard.clocks.CLK_100MHZ
+    leds     <> ledsPmod.LED_BUS
+    dir      <> devBoard.buttons.BTNC
+  end Demo
+
+object deca:
+  import dfhdl.platforms.devboards.terasic.DECA
+  given options.CompilerOptions.Backend = backends.vhdl.v93
+  @top class Demo extends common.Demo:
+    // resource connections
+    val devBoard = DECA()
+    clk  <> devBoard.clocks.MAX10_CLK1_50MHz
+    leds <> devBoard.leds.LED_BUS
+    dir  <> devBoard.buttons.KEY1
+  end Demo
