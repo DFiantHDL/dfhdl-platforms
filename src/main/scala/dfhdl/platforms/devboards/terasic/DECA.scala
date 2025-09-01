@@ -372,16 +372,20 @@ class DECA extends DevBoard:
   leds // touch to force execution
 
   object buttons:
+    @io(schmittTrigger = true)
     val KEY0 = Button(activeState = Button.Released)
     KEY0 <> nets.KEY0
+    @io(schmittTrigger = true)
     val KEY1 = Button(activeState = Button.Released)
     KEY1 <> nets.KEY1
   end buttons
   buttons // touch to force execution
 
   object switches:
+    @io(schmittTrigger = true)
     val SW0 = SwitchUD(activeState = SwitchUD.Up)
     SW0 <> nets.SW0
+    @io(schmittTrigger = true)
     val SW1 = SwitchUD(activeState = SwitchUD.Up)
     SW1 <> nets.SW1
   end switches
