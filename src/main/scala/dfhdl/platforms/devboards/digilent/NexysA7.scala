@@ -146,7 +146,6 @@ class NexysA7 extends DevBoard:
   // LEDs
   //////////////////////////////////////////
   object leds:
-    @timing.ignore(maxFreqMinPeriod = 100.Hz)
     val LED_BUS = IOBus.fill(16)(Led())
     LED_BUS(0)  <> fpga.ios.H17
     LED_BUS(1)  <> fpga.ios.K15
@@ -170,17 +169,15 @@ class NexysA7 extends DevBoard:
   // Buttons
   //////////////////////////////////////////
   object buttons:
-    val BTNL = Button()
-    BTNL <> fpga.ios.P17
-    val BTNR = Button()
-    BTNR <> fpga.ios.M17
-    val BTNU = Button()
-    BTNU <> fpga.ios.M18
-    val BTND = Button()
-    BTND <> fpga.ios.P18
-    val BTNC = Button()
-    BTNC <> fpga.ios.N17
+    @io(standard = io.Standard.LVCMOS)
+    val BTNL, BTNR, BTNU, BTND, BTNC = Button()
+    @io(standard = io.Standard.LVCMOS)
     val BTNRES = Button(activeState = Button.Released)
+    BTNL   <> fpga.ios.P17
+    BTNR   <> fpga.ios.M17
+    BTNU   <> fpga.ios.M18
+    BTND   <> fpga.ios.P18
+    BTNC   <> fpga.ios.N17
     BTNRES <> fpga.ios.C12
   end buttons
   buttons // touch to force execution

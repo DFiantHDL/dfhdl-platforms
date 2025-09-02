@@ -29,8 +29,10 @@ import dfhdl.hw.constraints.io
 class PMOD_BTN4x4 extends SPPmodBoard:
   protected val J1         = SPPmodConn.Male()
   protected val spPmodConn = J1
-  val K1, K2, K3, K4       = Button(activeState = Button.Released)
-  val S1, S2, S3, S4       = SwitchNS(activeState = SwitchNS.North)
+  @io(standard = io.Standard.LVCMOS)
+  val K1, K2, K3, K4 = Button(activeState = Button.Released)
+  @io(standard = io.Standard.LVCMOS)
+  val S1, S2, S3, S4 = SwitchNS(activeState = SwitchNS.North)
   J1.P(6)  <> K1
   J1.P(8)  <> K2
   J1.P(9)  <> K3

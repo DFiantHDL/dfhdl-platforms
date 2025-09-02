@@ -264,26 +264,16 @@ class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   leds // touch to force execution
 
   object buttons:
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_F1 = Button()
-    BTN_F1 <> nets.BTN_F1
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_F2 = Button()
-    BTN_F2 <> nets.BTN_F2
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_L = Button()
-    BTN_L <> nets.BTN_L
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_D = Button()
-    BTN_D <> nets.BTN_D
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_U = Button()
-    BTN_U <> nets.BTN_U
-    @io(pullMode = io.PullMode.DOWN)
-    val BTN_R = Button()
-    BTN_R <> nets.BTN_R
-    @io(pullMode = io.PullMode.UP)
+    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.DOWN)
+    val BTN_F1, BTN_F2, BTN_L, BTN_D, BTN_U, BTN_R = Button()
+    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.UP)
     val BTN_PWRn = Button(activeState = Button.Released)
+    BTN_F1   <> nets.BTN_F1
+    BTN_F2   <> nets.BTN_F2
+    BTN_L    <> nets.BTN_L
+    BTN_D    <> nets.BTN_D
+    BTN_U    <> nets.BTN_U
+    BTN_R    <> nets.BTN_R
     BTN_PWRn <> nets.BTN_PWRn
   end buttons
   buttons // touch to force execution

@@ -8,6 +8,11 @@ import dfhdl.*
 
 @toolOptions("openFPGALoader" -> "-b deca")
 class DECA extends DevBoard:
+  @deviceProperties(
+    "AUTO_RESTART_CONFIGURATION" -> "ON",
+    "ENABLE_CONFIGURATION_PINS"  -> "OFF",
+    "ENABLE_BOOT_SEL_PIN"        -> "OFF"
+  )
   @deviceConfig(
     flashPartName = "N25Q512A83GSF40F",
     interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
@@ -359,6 +364,7 @@ class DECA extends DevBoard:
   power // touch to force execution
 
   object leds:
+    @io(driveStrength = 8)
     val LED_BUS = IOBus.fill(8)(Led(activeState = Led.Off))
     LED_BUS(0) <> nets.LED0
     LED_BUS(1) <> nets.LED1
@@ -372,21 +378,17 @@ class DECA extends DevBoard:
   leds // touch to force execution
 
   object buttons:
-    @io(schmittTrigger = true)
-    val KEY0 = Button(activeState = Button.Released)
+    @io(standard = io.Standard.SchmittTrigger)
+    val KEY0, KEY1 = Button(activeState = Button.Released)
     KEY0 <> nets.KEY0
-    @io(schmittTrigger = true)
-    val KEY1 = Button(activeState = Button.Released)
     KEY1 <> nets.KEY1
   end buttons
   buttons // touch to force execution
 
   object switches:
-    @io(schmittTrigger = true)
-    val SW0 = SwitchUD(activeState = SwitchUD.Up)
+    @io(standard = io.Standard.SchmittTrigger)
+    val SW0, SW1 = SwitchUD(activeState = SwitchUD.Up)
     SW0 <> nets.SW0
-    @io(schmittTrigger = true)
-    val SW1 = SwitchUD(activeState = SwitchUD.Up)
     SW1 <> nets.SW1
   end switches
   switches // touch to force execution

@@ -330,10 +330,8 @@ class TangPrimer25KBase extends Board:
   // Buttons
   //////////////////////////////////////////
   object buttons:
-    @io(pullMode = io.PullMode.DOWN)
-    val S1 = Button()
-    @io(pullMode = io.PullMode.DOWN)
-    val S2 = Button()
+    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.DOWN)
+    val S1, S2 = Button()
     nets.H11_IOT3A_S1 <> S1
     nets.H10_IOT3B_S2 <> S2
   end buttons
