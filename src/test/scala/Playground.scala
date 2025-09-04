@@ -31,7 +31,7 @@ object ulx3s:
   @top class Demo extends common.Demo:
     // resource connections
     val devBoard = ULX3S()
-    clk  <> devBoard.clocks.Clk_25MHz
+    clk  <> devBoard.clocks.CLK_25MHz
     leds <> devBoard.leds.LED
     dir  <> devBoard.buttons.BTN_F1
   end Demo
@@ -59,4 +59,18 @@ object deca:
     clk  <> devBoard.clocks.MAX10_CLK1_50MHz
     leds <> devBoard.leds.LED_BUS
     dir  <> devBoard.buttons.KEY1
+  end Demo
+
+object tangprimer20k:
+  import dfhdl.platforms.devboards.sipeed.TangPrimer20K
+  import dfhdl.platforms.pmods.digilent.Pmod8LD
+  given options.CompilerOptions.Backend = backends.verilog.sv2005
+  @top class Demo extends common.Demo:
+    // resource connections
+    val devBoard = TangPrimer20K()
+    val ledsPmod = Pmod8LD()
+    ledsPmod <> devBoard.pmods.PMOD0
+    clk      <> devBoard.clocks.CLK_27MHz
+    leds     <> ledsPmod.LED_BUS
+    dir      <> devBoard.buttons.S1
   end Demo

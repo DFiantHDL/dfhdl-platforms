@@ -1,5 +1,4 @@
 package dfhdl.platforms.devboards.sipeed
-import dfhdl.platforms.pmods.sipeed.{SPPmodConn, SPPmodDualConn}
 import dfhdl.platforms.Board
 import dfhdl.platforms.devboards.DevBoard
 import dfhdl.platforms.resources.*
@@ -26,8 +25,8 @@ class TangPrimer25KCore extends Board:
 
   object clocks:
     @io(standard = io.Standard.LVCMOS)
-    val Clk_50MHz = Oscillator(50.MHz)
-    Clk_50MHz <> nets.CLK
+    val CLK_50MHz = Oscillator(50.MHz)
+    CLK_50MHz <> nets.CLK
   end clocks
   clocks // touch to force execution
 
@@ -291,11 +290,11 @@ class TangPrimer25KBase extends Board:
   // Pmods
   //////////////////////////////////////////
   object pmods:
-    val J4         = SPPmodConn.Female()
-    val J5         = SPPmodConn.Female()
-    val J6         = SPPmodConn.Female()
-    val J4_J5_Dual = SPPmodDualConn.Female(J4, J5)
-    val J5_J6_Dual = SPPmodDualConn.Female(J5, J6)
+    val J4         = PmodConn.SPFemale90Deg()
+    val J5         = PmodConn.SPFemale90Deg()
+    val J6         = PmodConn.SPFemale90Deg()
+    val J4_J5_Dual = PmodDualConn.Female(J4, J5)
+    val J5_J6_Dual = PmodDualConn.Female(J5, J6)
     // J4
     J4.P(5)  <> nets.C11_IOL5A
     J4.P(7)  <> nets.B11_IOL12A
@@ -354,6 +353,7 @@ end TangPrimer25KBase
 │║      J6      ║     ║      J5      ║    ║      J4      ║│
 └╚══════════════╝─────╚══════════════╝────╚══════════════╝┘
  */
+@toolOptions("openFPGALoader" -> "-b tangprimer25k")
 class TangPrimer25K extends DevBoard:
   val core = TangPrimer25KCore()
   val base = TangPrimer25KBase()

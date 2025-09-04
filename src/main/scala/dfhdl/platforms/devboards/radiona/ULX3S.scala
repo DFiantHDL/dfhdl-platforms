@@ -226,8 +226,8 @@ class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
 
   object clocks:
     @io(standard = io.Standard.LVCMOS)
-    val Clk_25MHz = Oscillator(25.MHz)
-    Clk_25MHz <> nets.CLK_25MHz
+    val CLK_25MHz = Oscillator(25.MHz)
+    CLK_25MHz <> nets.CLK_25MHz
   end clocks
   clocks // touch to force execution
 

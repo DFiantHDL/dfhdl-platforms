@@ -1,6 +1,7 @@
 package dfhdl.platforms.pmods.sipeed
 import dfhdl.platforms.resources.*
 import dfhdl.hw.constraints.io
+import dfhdl.platforms.pmods.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
 /*
@@ -15,10 +16,10 @@ import dfhdl.hw.constraints.io
 │   PMOD-LEDx8    │
 └─────────────────┘
  */
-class PMOD_LEDx8 extends SPPmodBoard:
-  protected val J1         = SPPmodConn.Male()
-  protected val spPmodConn = J1
-  val LED_BUS              = IOBus.fill(8)(Led(activeState = Led.Off))
+class PMOD_LEDx8 extends PmodBoard:
+  protected val J1       = PmodConn.SPMale90Deg()
+  protected val pmodConn = J1
+  val LED_BUS            = IOBus.fill(8)(Led(activeState = Led.Off))
   J1.P(11) <> LED_BUS(0)
   J1.P(12) <> LED_BUS(1)
   J1.P(9)  <> LED_BUS(2)

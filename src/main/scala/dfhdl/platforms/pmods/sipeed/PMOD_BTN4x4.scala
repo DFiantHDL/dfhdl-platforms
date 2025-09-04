@@ -1,5 +1,6 @@
 package dfhdl.platforms.pmods.sipeed
 import dfhdl.platforms.resources.*
+import dfhdl.platforms.pmods.*
 import dfhdl.hw.constraints.io
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
@@ -26,9 +27,9 @@ import dfhdl.hw.constraints.io
 │     PMOD-BTN 4x4      │
 └───────────────────────┘
  */
-class PMOD_BTN4x4 extends SPPmodBoard:
-  protected val J1         = SPPmodConn.Male()
-  protected val spPmodConn = J1
+class PMOD_BTN4x4 extends PmodBoard:
+  protected val J1       = PmodConn.SPMale90Deg()
+  protected val pmodConn = J1
   @io(standard = io.Standard.LVCMOS)
   val K1, K2, K3, K4 = Button(activeState = Button.Released)
   @io(standard = io.Standard.LVCMOS)
