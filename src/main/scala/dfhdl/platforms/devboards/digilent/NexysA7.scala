@@ -17,7 +17,7 @@ class NexysA7 extends DevBoard:
   @deviceConfig(
     flashPartName = "s25fl128sxxxxxx0-spi-x1_x2_x4",
     interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
-    sizeLimitMB   = 16
+    sizeLimitMb   = 128
   )
   final val fpga = xc7a100tcsg324(speedGrade = "1")
 
@@ -95,8 +95,8 @@ class NexysA7 extends DevBoard:
   //////////////////////////////////////////
   object clocks:
     @io(standard = io.Standard.LVCMOS)
-    val CLK_100MHZ = Oscillator(100.MHz)
-    CLK_100MHZ <> fpga.ios.E3
+    val CLK_100MHz = Oscillator(100.MHz)
+    CLK_100MHz <> fpga.ios.E3
   clocks // touch to force execution
 
   //////////////////////////////////////////

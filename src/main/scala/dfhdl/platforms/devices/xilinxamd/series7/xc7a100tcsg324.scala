@@ -1,14 +1,12 @@
-//format: off
-
-package dfhdl.platforms.devices.xilinxamd.series7.packages
-import dfhdl.platforms.devices.xilinxamd.series7.*
+package dfhdl.platforms.devices.xilinxamd.series7
+import dfhdl.hw.constraints.*
 import Pin.IOType.*
 import Pin.NA
-import dfhdl.hw.constraints.io
 
-trait CSG324 extends dfhdl.platforms.devices.Package:
+//format: off
+class xc7a100tcsg324(val speedGrade: String) extends Device:
+  final lazy val deviceName: String = "xc7a100t"
   final lazy val packageName: String = "csg324"
-
   class Bank0 extends Bank(CONFIG):
     object pins:
       val P10 = Pin(name = "DONE_0",                       memory = NA)
@@ -646,4 +644,4 @@ trait CSG324 extends dfhdl.platforms.devices.Package:
     end byName
   end ios
   ios // touch to force execution
-end CSG324
+end xc7a100tcsg324

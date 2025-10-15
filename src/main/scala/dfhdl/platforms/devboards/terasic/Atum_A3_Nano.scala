@@ -11,7 +11,7 @@ class Atum_A3_Nano extends DevBoard:
   @deviceConfig(
     flashPartName = "MT25QU128",
     interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
-    sizeLimitMB   = 128
+    sizeLimitMb   = 128
   )
   final val fpga = A3CZ135BB18AE7S()
 

@@ -15,7 +15,7 @@ class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   @deviceConfig(
     flashPartName = "IS25LP128F-JBLE",
     interface     = deviceConfig.Interface.MasterSPI(busWidth = 1),
-    sizeLimitMB   = 128,
+    sizeLimitMb   = 128,
     masterRate    = 62.MHz
   )
   final val fpga = LFE5U_85F_6BG381C()

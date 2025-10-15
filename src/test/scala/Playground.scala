@@ -40,16 +40,28 @@ object nexysA7:
   given options.CompilerOptions.Backend = backends.vhdl.v2008
   given options.ProgrammerOptions.Tool  = tools.programmers.vendor
   @top class Demo extends common.Demo(8):
-    val r = Bit <> VAR
     // resource connections
     val devBoard = NexysA7()
     val ledsPmod = PMOD_LEDx8()
     ledsPmod <> devBoard.pmods.JD
-    this     <> devBoard.clocks.CLK_100MHZ
+    this     <> devBoard.clocks.CLK_100MHz
     leds     <> ledsPmod.LED_BUS
     dir      <> devBoard.buttons.BTNC
   end Demo
 end nexysA7
+
+object basys3:
+  import dfhdl.platforms.devboards.digilent.Basys3
+  given options.CompilerOptions.Backend = backends.vhdl.v2008
+  given options.ProgrammerOptions.Tool  = tools.programmers.vendor
+  @top class Demo extends common.Demo(16):
+    // resource connections
+    val devBoard = Basys3()
+    this <> devBoard.clocks.CLK_100MHz
+    leds <> devBoard.leds.LED_BUS
+    dir  <> devBoard.buttons.BTNC
+  end Demo
+end basys3
 
 object deca:
   import dfhdl.platforms.devboards.terasic.DECA

@@ -16,7 +16,7 @@ class DECA extends DevBoard:
   @deviceConfig(
     flashPartName = "N25Q512A83GSF40F",
     interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
-    sizeLimitMB   = 64
+    sizeLimitMb   = 512
   )
   final val fpga = `10M50DAF484C6GES`()
 
