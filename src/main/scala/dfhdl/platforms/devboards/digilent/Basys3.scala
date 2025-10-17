@@ -296,4 +296,25 @@ class Basys3 extends DevBoard:
     JXADC.P(10) <> nets.XADC4_N
   end pmods
   pmods // touch to force execution
+
+  //////////////////////////////////////////
+  // Seven Segment Display
+  //////////////////////////////////////////
+  val sevenSegDisplay = SevenSegDisplay(
+    digits             = 4,
+    selectActiveState  = SevenSegDisplay.Select.Disabled,
+    segmentActiveState = SevenSegDisplay.Segment.Off
+  )
+  sevenSegDisplay.SELECT(0) <> nets.AN0
+  sevenSegDisplay.SELECT(1) <> nets.AN1
+  sevenSegDisplay.SELECT(2) <> nets.AN2
+  sevenSegDisplay.SELECT(3) <> nets.AN3
+  sevenSegDisplay.A         <> nets.CA
+  sevenSegDisplay.B         <> nets.CB
+  sevenSegDisplay.C         <> nets.CC
+  sevenSegDisplay.D         <> nets.CD
+  sevenSegDisplay.E         <> nets.CE
+  sevenSegDisplay.F         <> nets.CF
+  sevenSegDisplay.G         <> nets.CG
+  sevenSegDisplay.DP        <> nets.DP
 end Basys3
