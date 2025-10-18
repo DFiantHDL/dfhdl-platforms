@@ -1,7 +1,8 @@
 package dfhdl.platforms.devices.alteraintel
-import dfhdl.hw.constraints.io
+import dfhdl.hw.constraints.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
+@deviceInfo(slewRateSlowest = 2, slewRateFastest = 2)
 class A3CZ135BB18AE7S extends Device(true):
   lazy val deviceName: String    = "A3CZ135B"
   lazy val packageName: String   = "B18A"
