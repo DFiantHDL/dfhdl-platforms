@@ -1,6 +1,7 @@
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 import dfhdl.*
 import dfhdl.platforms.resources.*
+import dfhdl.hw.constraints.*
 
 object common:
   @top class Demo(val ledsCnt: Int = 8) extends RTDesign:
@@ -93,15 +94,35 @@ end tangprimer20k
 
 object atumA3Nano:
   import dfhdl.platforms.devboards.terasic.Atum_A3_Nano
-  given options.CompilerOptions.Backend = backends.vhdl
-  given options.ProgrammerOptions.Tool  = tools.programmers.vendor
-  @top class Demo extends common.Demo(4):
+  import dfhdl.platforms.ips.alteraintel.{intel_user_rst_clkgate, intelclkctrl}
+  given options.CompilerOptions.Backend          = backends.verilog
+  given options.ProgrammerOptions.Tool           = tools.programmers.vendor
+  given options.ElaborationOptions.DefaultRstCfg = RstCfg()
+  val cfg                                        = RTDomainCfg(ClkCfg(rate = 50.MHz), None)
+
+  @top class DemoTop extends RTDesign:
+    val clk  = Clk     <> IN
+    val leds = Bits(4) <> OUT
+    val dir  = Bit     <> IN
+    @timing.clock(rate = 50.MHz)
+    val dmn = new RTDomain(cfg):
+      val clk  = Clk <> VAR
+      val core = new common.Demo(4)
+    dmn.core.leds <> leds
+    dmn.core.dir  <> dir
+
+    val clk_gated =
+      intelclkctrl.gated(clk = clk.actual, ena = intel_user_rst_clkgate.getGlobalClkEna)
+    dmn.clk <> clk_gated.as(dmn.Clk)
+    given ExpectedActiveState[Led]    = Led.On
+    given ExpectedActiveState[Button] = Button.Pressed
+
     // resource connections
     val devBoard = Atum_A3_Nano()
     this <> devBoard.clocks.CLOCK0_50MHz
     leds <> devBoard.leds.LED_BUS
     dir  <> devBoard.buttons.KEY0
-  end Demo
+  end DemoTop
 end atumA3Nano
 
 object systemSim:
