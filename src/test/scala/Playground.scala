@@ -23,6 +23,23 @@ object common:
   end Demo
 end common
 
+object tinytapeout:
+  import dfhdl.platforms.devboards.tinytapeout.TT08Plus
+  given options.CompilerOptions.Backend = backends.verilog
+  import dfhdl.platforms.pmods.sipeed.{PMOD_LEDx8, PMOD_BTN4x4}
+  @top class Demo extends common.Demo(8):
+    // resource connections
+    val devBoard    = TT08Plus("SKY25b")
+    val ledsPmod    = PMOD_LEDx8()
+    val buttonsPmod = PMOD_BTN4x4()
+    buttonsPmod <> devBoard.pmods.J3_Input
+    ledsPmod    <> devBoard.pmods.J6_Output
+    this        <> devBoard.clocks.CLK_1Hz_TO_66MHz
+    leds        <> ledsPmod.LED_BUS
+    dir         <> buttonsPmod.K1
+  end Demo
+end tinytapeout
+
 object ulx3s:
   import dfhdl.platforms.devboards.radiona.ULX3S
   given options.CompilerOptions.Backend = backends.verilog.v2001

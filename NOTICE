@@ -1,0 +1,33 @@
+DFHDL Platforms
+Copyright (c) 2024 DFiant Inc.
+
+This product includes software developed by DFiant Inc.
+
+This product may reference or provide wrappers for third-party IPs and devices:
+
+Vendor IPs and Devices:
+- Xilinx/AMD FPGA devices and IPs
+  - Subject to Xilinx/AMD license terms
+  - See: https://www.xilinx.com/legal.html
+
+- Intel/Altera FPGA devices and IPs
+  - Subject to Intel license terms
+  - See: https://www.intel.com/content/www/us/en/legal/terms-of-use.html
+
+- Gowin FPGA devices
+  - Subject to Gowin Semiconductor license terms
+  - Contact Gowin for license information
+
+- Lattice FPGA devices
+  - Subject to Lattice Semiconductor license terms
+  - See: https://www.latticesemi.com/en/Support/Licensing
+
+Open Source Components:
+- TinyTapeout
+  - Open-source ASIC workflow
+  - See: https://tinytapeout.com/
+
+The DFHDL wrapper code is licensed under Apache License 2.0.
+Vendor IPs and devices are subject to their respective vendor licenses.
+Users must comply with all applicable vendor license terms.
+
