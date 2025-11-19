@@ -1,9 +1,18 @@
 package dfhdl.platforms.tinytapeout.tt_vga_clock
 import dfhdl.*
+
+/** Button pulse generator.
+  * @param MAX_COUNT
+  *   max wait before issue next pulse
+  * @param DEC_COUNT
+  *   every pulse, decrement comparitor by this amount
+  * @param MIN_COUNT
+  *   until reaches this wait time
+  */
 @top class ButtonPulse(
-    val MAX_COUNT: Int = 8, // max wait before issue next pulse
-    val DEC_COUNT: Int = 2, // every pulse, decrement comparitor by this amount
-    val MIN_COUNT: Int = 1 // until reaches this wait time
+    val MAX_COUNT: Int <> CONST = 8,
+    val DEC_COUNT: Int <> CONST = 2,
+    val MIN_COUNT: Int <> CONST = 1
 ) extends RTDesign:
   val clk_en = Bit <> IN
   val button = Bit <> IN
