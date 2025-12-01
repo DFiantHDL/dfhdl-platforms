@@ -1,7 +1,7 @@
 package dfhdl.platforms.tinytapeout.tt_vga_clock
 import dfhdl.*
 
-@top class VGA_Clock extends RTDesign:
+class VGA_Clock extends RTDesign:
   val adj_hrs = Bit <> IN
   val adj_min = Bit <> IN
   val adj_sec = Bit <> IN
@@ -17,17 +17,14 @@ import dfhdl.*
   val hrs_d = UInt(2) <> VAR.REG init 0
   val sec_counter = UInt(26) <> VAR.REG init 0
 
-  val OFFSET_Y_BLK = 0;
-  val OFFSET_X_BLK = 1;
-  val NUM_CHARS = 8;
-  val FONT_W = 4;
-  val FONT_H = 5;
-  val COLON = 10;
-  val BLANK = 11;
-  val COL_INDEX_W = clog2(FONT_W);
-  val MAX_BUT_RATE = 16;
-  val DEC_COUNT = 1;
-  val MIN_COUNT = 2;
+  val NUM_CHARS: Int <> CONST = 8;
+  val FONT_W: Int <> CONST = 4;
+  val FONT_H: Int <> CONST = 5;
+  val COLON: Int <> CONST = 10;
+  val BLANK: Int <> CONST = 11;
+  val MAX_BUT_RATE: Int <> CONST = 16;
+  val DEC_COUNT: Int <> CONST = 1;
+  val MIN_COUNT: Int <> CONST = 2;
 
   val color_offset = UInt(4) <> VAR.REG init 0
   val number = UInt(4) <> VAR
@@ -95,8 +92,21 @@ import dfhdl.*
     hrs_u.din := hrs_u + 1;
   end if
 
-  // TODO
-  number := 0
+  number := (if (x_block < FONT_W * 1) hrs_d
+             else
+               if (x_block < FONT_W * 2) hrs_u
+               else
+                 if (x_block < FONT_W * 3) COLON
+                 else
+                   if (x_block < FONT_W * 4) min_d
+                   else
+                     if (x_block < FONT_W * 5) min_u
+                     else
+                       if (x_block < FONT_W * 6) COLON
+                       else
+                         if (x_block < FONT_W * 7) sec_d
+                         else
+                           if (x_block < FONT_W * 8) sec_u else BLANK)
 
   val digit = Digit(
     FONT_W = FONT_W,

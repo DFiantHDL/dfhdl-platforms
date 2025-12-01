@@ -1,11 +1,7 @@
 package dfhdl.platforms.tinytapeout.tt_vga_clock
 import dfhdl.*
 
-given options.ElaborationOptions.DefaultRstCfg = RstCfg(RstCfg.Mode.Sync, RstCfg.Active.High)
-
 @top class VGASyncGen extends RTDesign:
-  val px_clk = Clk <> IN
-  val reset = Rst <> IN
   val hsync = Bit <> OUT
   val vsync = Bit <> OUT
   val x_px = UInt(10) <> OUT.REG init 0
