@@ -125,7 +125,7 @@ class VGA_Clock extends RTDesign:
   val col_index_q = digit.col_index.reg(1, init = ?)
   val draw = Bit <> VAR.REG init 0
   val font_out_idx = (FONT_W - 1) - col_index_q
-  rrggbb <> (vga.activevideo && draw).sel(digit.color, all(0))
+  rrggbb <> (vga.activevideo && draw).sel(digit.color, 0)
   if (x_block_q < FONT_W * NUM_CHARS && y_block_q < FONT_H)
     draw.din := font.dout(font_out_idx)
   else
