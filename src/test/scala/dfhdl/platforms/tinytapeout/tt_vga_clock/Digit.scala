@@ -28,6 +28,6 @@ import dfhdl.*
 
   val char = x_block.bits(5, 2).uint
   digit_index.din := digit_index_mem(number)
-  col_index.din := col_index_mem((x_block min (NUM_BLOCKS - 1)).truncate)
-  color.din := color_index_mem((char + color_offset).truncate)
+  col_index.din := col_index_mem((x_block min (NUM_BLOCKS - 1)).resize)
+  color.din := color_index_mem((char + color_offset).resize)
 end Digit
