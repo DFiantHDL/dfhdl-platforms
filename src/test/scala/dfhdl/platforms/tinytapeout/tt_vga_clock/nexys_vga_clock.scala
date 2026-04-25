@@ -6,10 +6,9 @@ import dfhdl.platforms.ips.xilinxamd.clk_wiz
 import hw.constraints.*
 
 class vga_clk_gen extends clk_wiz()
-val main_dmn_cfg = RTDomainCfg(ClkCfg(rate = 100.MHz), None)
-val vga_dmn_cfg = RTDomainCfg(ClkCfg(rate = 31.5.MHz), RstCfg(active = RstCfg.Active.Low))
 
-@top class nexys_vga_clock extends RTDesign(main_dmn_cfg):
+@timing.clock(rate = 100.MHz, grpName = "main")
+@top class nexys_vga_clock extends RTDesign:
   val clk = Clk <> IN
   val adj_hrs = Bit <> IN
   val adj_min = Bit <> IN
@@ -18,8 +17,9 @@ val vga_dmn_cfg = RTDomainCfg(ClkCfg(rate = 31.5.MHz), RstCfg(active = RstCfg.Ac
   val vsync = Bit <> OUT
   val rrggbb = Bits(6) <> OUT
 
-  @timing.clock(rate = 31.5.MHz)
-  val vga_dmn = new RTDomain(vga_dmn_cfg):
+  @timing.clock(rate = 31.5.MHz, grpName = "vga")
+  @timing.reset(active = timing.reset.Active.Low)
+  val vga_dmn = new RTDomain:
     val clk = Clk <> VAR
     val rst_n = Rst <> VAR
     val core = new VGA_Clock()

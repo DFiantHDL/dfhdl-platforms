@@ -55,7 +55,7 @@ class TT08Plus_Breakout_Board(shuttle: String) extends Board:
   CON2.P(38) <> asic.ios.uio3
 end TT08Plus_Breakout_Board
 
-class TT08Plus_Demo_Board(clkRate: ClkCfg.Rate) extends Board:
+class TT08Plus_Demo_Board(clkRate: Rate) extends Board:
   val CON1 = DockConn.Male()
   val CON2 = DockConn.Male()
 
@@ -129,7 +129,7 @@ class TT08Plus_Demo_Board(clkRate: ClkCfg.Rate) extends Board:
   pmods // touch to force execution
 end TT08Plus_Demo_Board
 
-class TT08Plus(shuttle: String, clkRate: ClkCfg.Rate = 50.MHz) extends Board:
+class TT08Plus(shuttle: String, clkRate: Rate = 50.MHz) extends Board:
   val breakout = TT08Plus_Breakout_Board(shuttle)
   val demo     = TT08Plus_Demo_Board(clkRate)
   breakout.CON1 <> demo.CON1

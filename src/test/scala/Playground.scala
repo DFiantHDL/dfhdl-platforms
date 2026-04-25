@@ -114,15 +114,14 @@ object atumA3Nano:
   import dfhdl.platforms.ips.alteraintel.{intel_user_rst_clkgate, intelclkctrl}
   given options.CompilerOptions.Backend          = backends.verilog
   given options.ProgrammerOptions.Tool           = tools.programmers.vendor
-  given options.ElaborationOptions.DefaultRstCfg = RstCfg()
-  val cfg                                        = RTDomainCfg(ClkCfg(rate = 50.MHz), None)
+  given options.ElaborationOptions.DefaultRstCfg = hw.constraints.timing.reset()
 
   @top class DemoTop extends RTDesign:
     val clk  = Clk     <> IN
     val leds = Bits(4) <> OUT
     val dir  = Bit     <> IN
-    @timing.clock(rate = 50.MHz)
-    val dmn = new RTDomain(cfg):
+    @timing.clock(rate = 50.MHz, grpName = "demo")
+    val dmn = new RTDomain:
       val clk  = Clk <> VAR
       val core = new common.Demo(4)
     dmn.core.leds <> leds
@@ -141,24 +140,24 @@ object atumA3Nano:
     dir  <> devBoard.buttons.KEY0
   end DemoTop
 end atumA3Nano
-
-object systemSim:
-  @top class Test extends RTDesign:
-    val ulx3sDemo        = ulx3s.Demo()
-    val nexysA7Demo      = nexysA7.Demo()
-    val decaDemo         = deca.Demo()
-    val tangprimer20Demo = tangprimer20k.Demo()
-    val dir              = Bit <> VAR
-    dir                  <> 0
-    ulx3sDemo.dir        <> dir
-    nexysA7Demo.dir      <> dir
-    decaDemo.dir         <> dir
-    tangprimer20Demo.dir <> dir
-    val ed = new EDDomain:
-      process:
-        report(
-          s"ULX3S: ${ulx3sDemo.leds} NexysA7: ${nexysA7Demo.leds} DECA: ${decaDemo.leds} TangPrimer20K: ${tangprimer20Demo.leds}"
-        )
-        wait(1.ms)
-  end Test
-end systemSim
+//
+// object systemSim:
+//   @top class Test extends RTDesign:
+//     val ulx3sDemo        = ulx3s.Demo()
+//     val nexysA7Demo      = nexysA7.Demo()
+//     val decaDemo         = deca.Demo()
+//     val tangprimer20Demo = tangprimer20k.Demo()
+//     val dir              = Bit <> VAR
+//     dir                  <> 0
+//     ulx3sDemo.dir        <> dir
+//     nexysA7Demo.dir      <> dir
+//     decaDemo.dir         <> dir
+//     tangprimer20Demo.dir <> dir
+//     val ed = new EDDomain:
+//       process:
+//         report(
+//           s"ULX3S: ${ulx3sDemo.leds} NexysA7: ${nexysA7Demo.leds} DECA: ${decaDemo.leds} TangPrimer20K: ${tangprimer20Demo.leds}"
+//         )
+//         wait(1.ms)
+//   end Test
+// end systemSim

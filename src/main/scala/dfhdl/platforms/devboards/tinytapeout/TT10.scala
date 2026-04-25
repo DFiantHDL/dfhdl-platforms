@@ -16,6 +16,7 @@
 package dfhdl.platforms.tinytapeout
 import dfhdl.*
 import dfhdl.hw.annotation.unused
+import dfhdl.hw.constraints.timing
 
 abstract class TT10 extends RTDesign:
   override def customTopChecks(): Unit =
@@ -51,17 +52,17 @@ object TT10:
     "CLOCK_PORT" -> "clk",
     "CLOCK_PERIOD" -> "20"
   )
-  lazy val defaultClkCfg = ClkCfg(
-    edge = ClkCfg.Edge.Rising,
+  lazy val defaultClkCfg = timing.clock(
+    edge = timing.clock.Edge.Rising,
     rate = configJSON("CLOCK_PERIOD").toDouble.ns,
     portName = configJSON("CLOCK_PORT"),
-    inclusionPolicy = ClkCfg.InclusionPolicy.AlwaysAtTop
+    inclusionPolicy = timing.InclusionPolicy.AlwaysAtTop
   )
-  lazy val defaultRstCfg = RstCfg(
-    mode = RstCfg.Mode.Sync,
-    active = RstCfg.Active.Low,
+  lazy val defaultRstCfg = timing.reset(
+    mode = timing.reset.Mode.Sync,
+    active = timing.reset.Active.Low,
     portName = "rst_n",
-    inclusionPolicy = RstCfg.InclusionPolicy.AlwaysAtTop
+    inclusionPolicy = timing.InclusionPolicy.AlwaysAtTop
   )
   given options.ElaborationOptions.Defaults[TT10] =
     options.ElaborationOptions.defaults.copy(
