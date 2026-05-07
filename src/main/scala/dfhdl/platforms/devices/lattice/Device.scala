@@ -21,11 +21,11 @@
  * as-is without any warranty or guarantee of compatibility with Lattice IP.
  */
 package dfhdl.platforms.devices.lattice
-import dfhdl.hw.constraints.*
+import dfhdl.compiler.ir.constraints.DeviceID
 
 trait Device extends dfhdl.platforms.devices.Device:
   lazy val speed: String
   lazy val grade: String
-  final lazy val vendor: deviceID.Vendor = deviceID.Vendor.Lattice
+  final lazy val vendor: DeviceID.Vendor = DeviceID.Vendor.Lattice
   final lazy val partName: String = s"$deviceName-$speed$packageName$grade"
   final lazy val deviceVersion: String = ""

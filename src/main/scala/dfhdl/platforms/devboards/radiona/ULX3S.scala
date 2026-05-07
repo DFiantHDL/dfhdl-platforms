@@ -29,7 +29,7 @@ import dfhdl.*
 class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   @deviceConfig(
     flashPartName = "IS25LP128F-JBLE",
-    interface     = deviceConfig.Interface.MasterSPI(busWidth = 1),
+    interface     = _.masterspi(busWidth = 1),
     sizeLimitMb   = 128,
     masterRate    = 62.MHz
   )
@@ -240,7 +240,7 @@ class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   nets // touch to force execution
 
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLK_25MHz = Oscillator(25.MHz)
     CLK_25MHz <> nets.CLK_25MHz
   end clocks
@@ -279,9 +279,9 @@ class ULX3S(P2V5_3V3_Sel: 2.5 | 3.3 = 3.3) extends DevBoard:
   leds // touch to force execution
 
   object buttons:
-    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.DOWN)
+    @io(standard = _.lvcmos, pullMode = _.down)
     val BTN_F1, BTN_F2, BTN_L, BTN_D, BTN_U, BTN_R = Button()
-    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.UP)
+    @io(standard = _.lvcmos, pullMode = _.up)
     val BTN_PWRn = Button(activeState = Button.Released)
     BTN_F1   <> nets.BTN_F1
     BTN_F2   <> nets.BTN_F2

@@ -25,13 +25,13 @@ class VGAClockPMOD extends PmodTripleBoard:
   protected val J3             = PmodConn.Male()
   protected val pmodTripleConn = PmodTripleConn.Male(J3, J2, J1)
 
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val btn_hrs, btn_min, btn_sec = Button()
   J1.P(3) <> btn_sec
   J1.P(2) <> btn_min
   J1.P(1) <> btn_hrs
 
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val vga = VGA(bitsPerColor = 2)
   J3.P(10) <> vga.R(1)
   J3.P(9)  <> vga.R(0)

@@ -21,7 +21,7 @@
  * as-is without any warranty or guarantee of compatibility with Gowin IP.
  */
 package dfhdl.platforms.devices.gowin
-import dfhdl.hw.constraints.*
+import dfhdl.compiler.ir.constraints.DeviceID
 
 trait Device extends dfhdl.platforms.devices.Device:
-  final lazy val vendor: deviceID.Vendor = deviceID.Vendor.Gowin
+  final lazy val vendor: DeviceID.Vendor = DeviceID.Vendor.Gowin

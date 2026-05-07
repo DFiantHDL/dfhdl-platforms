@@ -25,7 +25,7 @@ import dfhdl.platforms.pmods.*
 class Atum_A3_Nano extends DevBoard:
   @deviceConfig(
     flashPartName = "MT25QU128",
-    interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
+    interface     = _.masterspi(busWidth = 4),
     sizeLimitMb   = 128
   )
   final val fpga = A3CZ135BB18AE7S()
@@ -238,16 +238,16 @@ class Atum_A3_Nano extends DevBoard:
   nets // touch to force execution
 
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLOCK0_50MHz = Oscillator(50.MHz)
     CLOCK0_50MHz <> nets.CLOCK0_50
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLOCK1_50MHz = Oscillator(50.MHz)
     CLOCK1_50MHz <> nets.CLOCK1_50
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLOCK2_50MHz = Oscillator(50.MHz)
     CLOCK2_50MHz <> nets.CLOCK2_50
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLOCK3_50MHz = Oscillator(50.MHz)
     CLOCK3_50MHz <> nets.CLOCK3_50
   end clocks
@@ -271,7 +271,7 @@ class Atum_A3_Nano extends DevBoard:
   power // touch to force execution
 
   object leds:
-    @io(standard = io.Standard.LVCMOS, driveStrength = 9)
+    @io(standard = _.lvcmos, driveStrength = 9)
     val LED_BUS = IOBus.fill(4)(Led(activeState = Led.Off))
     LED_BUS(0) <> nets.LED0
     LED_BUS(1) <> nets.LED1
@@ -281,7 +281,7 @@ class Atum_A3_Nano extends DevBoard:
   leds // touch to force execution
 
   object buttons:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val KEY0, KEY1 = Button(activeState = Button.Released)
     KEY0 <> nets.KEY0
     KEY1 <> nets.KEY1
@@ -289,7 +289,7 @@ class Atum_A3_Nano extends DevBoard:
   buttons // touch to force execution
 
   object switches:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val SW0, SW1 = SwitchUD(activeState = SwitchUD.Up)
     SW0 <> nets.SW0
     SW1 <> nets.SW1

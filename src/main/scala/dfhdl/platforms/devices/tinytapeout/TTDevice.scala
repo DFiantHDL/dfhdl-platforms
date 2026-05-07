@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 package dfhdl.platforms.devices.tinytapeout
-import dfhdl.hw.constraints.*
+import dfhdl.compiler.ir.constraints.DeviceID
 import dfhdl.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
 class TTDevice(val shuttle: String) extends dfhdl.platforms.devices.Device:
-  final lazy val vendor: deviceID.Vendor = deviceID.Vendor.TinyTapeout
+  final lazy val vendor: DeviceID.Vendor = DeviceID.Vendor.TinyTapeout
   final lazy val deviceName: String      = "TinyTapeout"
   final lazy val partName: String        = shuttle
   final lazy val deviceVersion: String   = ""

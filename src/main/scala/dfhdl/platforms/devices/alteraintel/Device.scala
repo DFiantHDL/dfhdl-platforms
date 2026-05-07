@@ -21,7 +21,7 @@
  * as-is without any warranty or guarantee of compatibility with Intel/Altera IP.
  */
 package dfhdl.platforms.devices.alteraintel
-import dfhdl.hw.constraints.*
+import dfhdl.compiler.ir.constraints.DeviceID
 
 abstract class Device(pro: Boolean) extends dfhdl.platforms.devices.Device:
-  final lazy val vendor: deviceID.Vendor = deviceID.Vendor.AlteraIntel(pro)
+  final lazy val vendor: DeviceID.Vendor = DeviceID.Vendor.AlteraIntel(pro)

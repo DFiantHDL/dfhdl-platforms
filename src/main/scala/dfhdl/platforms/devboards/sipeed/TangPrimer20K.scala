@@ -220,7 +220,7 @@ class TangPrimer20KSOM(
   nets // touch to force execution
 
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLK_27MHz = Oscillator(27.MHz)
     CLK_27MHz <> nets.H11_IOT27A_OSC_CK
   end clocks
@@ -702,7 +702,7 @@ class TangPrimer20KDock extends Board:
   object buttons:
     // S0..S4 according to the names written on the board itself
     // (this is different than the names in the schematics)
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val S0, S1, S2, S3, S4 = Button(activeState = Button.Released)
     S0 <> nets.Silicone_Key_1
     S1 <> nets.Silicone_Key_2
@@ -716,7 +716,7 @@ class TangPrimer20KDock extends Board:
   // Switches
   //////////////////////////////////////////
   object switches:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val SW1, SW2, SW3, SW4, SW5 = SwitchUD(activeState = SwitchUD.Up)
     SW1 <> nets.SW1
     SW2 <> nets.SW2

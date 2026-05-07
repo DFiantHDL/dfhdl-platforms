@@ -22,10 +22,10 @@
  */
 package dfhdl.platforms.devices.xilinxamd.series7
 import dfhdl.internals.HasTypeName
-import dfhdl.hw.constraints.*
+import dfhdl.compiler.ir.constraints.DeviceID
 
 trait Device extends dfhdl.platforms.devices.Device:
   val speedGrade: String
-  final lazy val vendor: deviceID.Vendor = deviceID.Vendor.XilinxAMD
+  final lazy val vendor: DeviceID.Vendor = DeviceID.Vendor.XilinxAMD
   final lazy val partName: String = s"$deviceName$packageName-$speedGrade"
   final lazy val deviceVersion: String = ""

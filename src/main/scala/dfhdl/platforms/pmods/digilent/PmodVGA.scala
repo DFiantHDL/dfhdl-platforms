@@ -23,7 +23,7 @@ class PmodVGA extends PmodDualBoard:
   protected val J2           = PmodConn.Male()
   protected val pmodDualConn = PmodDualConn.Male(J1, J2)
 
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val vga = VGA()
   vga.R(0) <> J1.P(1)
   vga.R(1) <> J1.P(2)

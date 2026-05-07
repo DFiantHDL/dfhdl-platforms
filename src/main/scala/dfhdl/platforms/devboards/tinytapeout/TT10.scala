@@ -53,16 +53,16 @@ object TT10:
     "CLOCK_PERIOD" -> "20"
   )
   lazy val defaultClkCfg = timing.clock(
-    edge = timing.clock.Edge.Rising,
+    edge = _.rising,
     rate = configJSON("CLOCK_PERIOD").toDouble.ns,
     portName = configJSON("CLOCK_PORT"),
-    inclusionPolicy = timing.InclusionPolicy.AlwaysAtTop
+    inclusionPolicy = _.alwaysattop
   )
   lazy val defaultRstCfg = timing.reset(
-    mode = timing.reset.Mode.Sync,
-    active = timing.reset.Active.Low,
+    mode = _.sync,
+    active = _.low,
     portName = "rst_n",
-    inclusionPolicy = timing.InclusionPolicy.AlwaysAtTop
+    inclusionPolicy = _.alwaysattop
   )
   given options.ElaborationOptions.Defaults[TT10] =
     options.ElaborationOptions.defaults.copy(

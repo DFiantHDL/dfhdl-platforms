@@ -39,7 +39,7 @@ class TangPrimer25KCore extends Board:
   nets // touch to force execution
 
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLK_50MHz = Oscillator(50.MHz)
     CLK_50MHz <> nets.CLK
   end clocks
@@ -344,7 +344,7 @@ class TangPrimer25KBase extends Board:
   // Buttons
   //////////////////////////////////////////
   object buttons:
-    @io(standard = io.Standard.LVCMOS, pullMode = io.PullMode.DOWN)
+    @io(standard = _.lvcmos, pullMode = _.down)
     val S1, S2 = Button()
     nets.H11_IOT3A_S1 <> S1
     nets.H10_IOT3B_S2 <> S2

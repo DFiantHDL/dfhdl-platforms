@@ -23,7 +23,7 @@ class TinyVGA extends PmodBoard:
   protected val J1       = PmodConn.Male()
   protected val pmodConn = J1
 
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val vga = VGA(bitsPerColor = 2)
   J1.P(1)  <> vga.R(1)
   J1.P(2)  <> vga.G(1)

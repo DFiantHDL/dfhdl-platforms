@@ -31,7 +31,7 @@ class NexysA7 extends DevBoard:
   )
   @deviceConfig(
     flashPartName = "s25fl128sxxxxxx0-spi-x1_x2_x4",
-    interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
+    interface     = _.masterspi(busWidth = 4),
     sizeLimitMb   = 128
   )
   final val fpga = xc7a100tcsg324(speedGrade = "1")
@@ -109,7 +109,7 @@ class NexysA7 extends DevBoard:
   // Clocks
   //////////////////////////////////////////
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLK_100MHz = Oscillator(100.MHz)
     CLK_100MHz <> fpga.ios.E3
   clocks // touch to force execution
@@ -117,7 +117,7 @@ class NexysA7 extends DevBoard:
   //////////////////////////////////////////
   // VGA
   //////////////////////////////////////////
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val vgaJ3 = VGA()
   vgaJ3.R(0) <> fpga.ios.A3
   vgaJ3.R(1) <> fpga.ios.B4
@@ -184,9 +184,9 @@ class NexysA7 extends DevBoard:
   // Buttons
   //////////////////////////////////////////
   object buttons:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val BTNL, BTNR, BTNU, BTND, BTNC = Button()
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val BTNRES = Button(activeState = Button.Released)
     BTNL   <> fpga.ios.P17
     BTNR   <> fpga.ios.M17

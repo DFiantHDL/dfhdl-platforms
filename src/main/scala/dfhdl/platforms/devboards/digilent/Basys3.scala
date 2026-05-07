@@ -30,7 +30,7 @@ class Basys3 extends DevBoard:
   )
   @deviceConfig(
     flashPartName = "s25fl032p-spi-x1_x2_x4",
-    interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
+    interface     = _.masterspi(busWidth = 4),
     sizeLimitMb   = 32
   )
   final val fpga = xc7a35tcpg236(speedGrade = "1")
@@ -168,7 +168,7 @@ class Basys3 extends DevBoard:
   // Clocks
   //////////////////////////////////////////
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val CLK_100MHz = Oscillator(100.MHz)
     CLK_100MHz <> nets.CLK100MHZ
   end clocks
@@ -215,7 +215,7 @@ class Basys3 extends DevBoard:
   // Buttons
   //////////////////////////////////////////
   object buttons:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val BTNL, BTNR, BTNU, BTND, BTNC = Button()
     BTNL <> nets.BTNL
     BTNR <> nets.BTNR
@@ -229,7 +229,7 @@ class Basys3 extends DevBoard:
   // Switches
   //////////////////////////////////////////
   object switches:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val SW_BUS = IOBus.fill(16)(SwitchUD())
     SW_BUS(0)  <> nets.SW0
     SW_BUS(1)  <> nets.SW1
@@ -253,7 +253,7 @@ class Basys3 extends DevBoard:
   //////////////////////////////////////////
   // VGA
   //////////////////////////////////////////
-  @io(standard = io.Standard.LVCMOS)
+  @io(standard = _.lvcmos)
   val vgaJ1 = VGA()
   vgaJ1.R(0) <> nets.VGA_R0
   vgaJ1.R(1) <> nets.VGA_R1

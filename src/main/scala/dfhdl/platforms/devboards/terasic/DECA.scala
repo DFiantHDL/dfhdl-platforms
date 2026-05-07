@@ -30,7 +30,7 @@ class DECA extends DevBoard:
   )
   @deviceConfig(
     flashPartName = "N25Q512A83GSF40F",
-    interface     = deviceConfig.Interface.MasterSPI(busWidth = 4),
+    interface     = _.masterspi(busWidth = 4),
     sizeLimitMb   = 512
   )
   final val fpga = `10M50DAF484C6GES`()
@@ -344,16 +344,16 @@ class DECA extends DevBoard:
   nets // touch to force execution
 
   object clocks:
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val ADC_CLK_10MHz = Oscillator(10.MHz)
     ADC_CLK_10MHz <> nets.ADC_CLK_10
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val MAX10_CLK1_50MHz = Oscillator(50.MHz)
     MAX10_CLK1_50MHz <> nets.MAX10_CLK1_50
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val MAX10_CLK2_50MHz = Oscillator(50.MHz)
     MAX10_CLK2_50MHz <> nets.MAX10_CLK2_50
-    @io(standard = io.Standard.LVCMOS)
+    @io(standard = _.lvcmos)
     val DDR3_CLK_50MHz = Oscillator(50.MHz)
     DDR3_CLK_50MHz <> nets.DDR3_CLK_50
   end clocks
@@ -393,7 +393,7 @@ class DECA extends DevBoard:
   leds // touch to force execution
 
   object buttons:
-    @io(standard = io.Standard.SchmittTrigger)
+    @io(standard = _.schmitttrigger)
     val KEY0, KEY1 = Button(activeState = Button.Released)
     KEY0 <> nets.KEY0
     KEY1 <> nets.KEY1
@@ -401,7 +401,7 @@ class DECA extends DevBoard:
   buttons // touch to force execution
 
   object switches:
-    @io(standard = io.Standard.SchmittTrigger)
+    @io(standard = _.schmitttrigger)
     val SW0, SW1 = SwitchUD(activeState = SwitchUD.Up)
     SW0 <> nets.SW0
     SW1 <> nets.SW1

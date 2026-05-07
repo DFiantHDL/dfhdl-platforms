@@ -18,7 +18,7 @@ class vga_clk_gen extends clk_wiz()
   val rrggbb = Bits(6) <> OUT
 
   @timing.clock(rate = 31.5.MHz, grpName = "vga")
-  @timing.reset(active = timing.reset.Active.Low)
+  @timing.reset(active = _.low)
   val vga_dmn = new RTDomain:
     val clk = Clk <> VAR
     val rst_n = Rst <> VAR
