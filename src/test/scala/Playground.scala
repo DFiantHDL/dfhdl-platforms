@@ -43,7 +43,7 @@ end tinytapeout
 object ulx3s:
   import dfhdl.platforms.devboards.radiona.ULX3S
   given options.CompilerOptions.Backend = _.verilog.v2001
-  given options.ProgrammerOptions.Tool  = tools.programmers.foss
+  given options.ProgrammerOptions.Tool  = _.foss
   @top class Demo extends common.Demo(8):
     // resource connections
     val devBoard = ULX3S()
@@ -56,7 +56,7 @@ object nexysA7:
   import dfhdl.platforms.devboards.digilent.NexysA7
   import dfhdl.platforms.pmods.sipeed.PMOD_LEDx8
   given options.CompilerOptions.Backend = _.vhdl.v2008
-  given options.ProgrammerOptions.Tool  = tools.programmers.vendor
+  given options.ProgrammerOptions.Tool  = _.vendor
   @top class Demo extends common.Demo(8):
     // resource connections
     val devBoard = NexysA7()
@@ -71,7 +71,7 @@ end nexysA7
 object basys3:
   import dfhdl.platforms.devboards.digilent.Basys3
   given options.CompilerOptions.Backend = _.vhdl.v2008
-  given options.ProgrammerOptions.Tool  = tools.programmers.vendor
+  given options.ProgrammerOptions.Tool  = _.vendor
   @top class Demo extends common.Demo(16):
     // resource connections
     val devBoard = Basys3()
@@ -84,7 +84,7 @@ end basys3
 object deca:
   import dfhdl.platforms.devboards.terasic.DECA
   given options.CompilerOptions.Backend = _.vhdl.v93
-  given options.ProgrammerOptions.Tool  = tools.programmers.vendor
+  given options.ProgrammerOptions.Tool  = _.vendor
   @top class Demo extends common.Demo(8):
     // resource connections
     val devBoard = DECA()
@@ -97,7 +97,7 @@ object tangprimer20k:
   import dfhdl.platforms.devboards.sipeed.TangPrimer20K
   import dfhdl.platforms.pmods.digilent.Pmod8LD
   given options.CompilerOptions.Backend = _.verilog.sv2005
-  given options.ProgrammerOptions.Tool  = tools.programmers.foss
+  given options.ProgrammerOptions.Tool  = _.foss
   @top class Demo extends common.Demo(8):
     // resource connections
     val devBoard = TangPrimer20K()
@@ -113,7 +113,7 @@ object atumA3Nano:
   import dfhdl.platforms.devboards.terasic.Atum_A3_Nano
   import dfhdl.platforms.ips.alteraintel.{intel_user_rst_clkgate, intelclkctrl}
   given options.CompilerOptions.Backend          = _.verilog
-  given options.ProgrammerOptions.Tool           = tools.programmers.vendor
+  given options.ProgrammerOptions.Tool           = _.vendor
   given options.ElaborationOptions.DefaultRstCfg = hw.constraints.timing.reset()
 
   @top class DemoTop extends RTDesign:
