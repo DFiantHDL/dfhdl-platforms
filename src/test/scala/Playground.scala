@@ -25,7 +25,7 @@ end common
 
 object tinytapeout:
   import dfhdl.platforms.devboards.tinytapeout.TT08Plus
-  given options.CompilerOptions.Backend = backends.verilog
+  given options.CompilerOptions.Backend = _.verilog
   import dfhdl.platforms.pmods.sipeed.{PMOD_LEDx8, PMOD_BTN4x4}
   @top class Demo extends common.Demo(8):
     // resource connections
@@ -42,7 +42,7 @@ end tinytapeout
 
 object ulx3s:
   import dfhdl.platforms.devboards.radiona.ULX3S
-  given options.CompilerOptions.Backend = backends.verilog.v2001
+  given options.CompilerOptions.Backend = _.verilog.v2001
   given options.ProgrammerOptions.Tool  = tools.programmers.foss
   @top class Demo extends common.Demo(8):
     // resource connections
@@ -55,7 +55,7 @@ object ulx3s:
 object nexysA7:
   import dfhdl.platforms.devboards.digilent.NexysA7
   import dfhdl.platforms.pmods.sipeed.PMOD_LEDx8
-  given options.CompilerOptions.Backend = backends.vhdl.v2008
+  given options.CompilerOptions.Backend = _.vhdl.v2008
   given options.ProgrammerOptions.Tool  = tools.programmers.vendor
   @top class Demo extends common.Demo(8):
     // resource connections
@@ -70,7 +70,7 @@ end nexysA7
 
 object basys3:
   import dfhdl.platforms.devboards.digilent.Basys3
-  given options.CompilerOptions.Backend = backends.vhdl.v2008
+  given options.CompilerOptions.Backend = _.vhdl.v2008
   given options.ProgrammerOptions.Tool  = tools.programmers.vendor
   @top class Demo extends common.Demo(16):
     // resource connections
@@ -83,7 +83,7 @@ end basys3
 
 object deca:
   import dfhdl.platforms.devboards.terasic.DECA
-  given options.CompilerOptions.Backend = backends.vhdl.v93
+  given options.CompilerOptions.Backend = _.vhdl.v93
   given options.ProgrammerOptions.Tool  = tools.programmers.vendor
   @top class Demo extends common.Demo(8):
     // resource connections
@@ -96,7 +96,7 @@ object deca:
 object tangprimer20k:
   import dfhdl.platforms.devboards.sipeed.TangPrimer20K
   import dfhdl.platforms.pmods.digilent.Pmod8LD
-  given options.CompilerOptions.Backend = backends.verilog.sv2005
+  given options.CompilerOptions.Backend = _.verilog.sv2005
   given options.ProgrammerOptions.Tool  = tools.programmers.foss
   @top class Demo extends common.Demo(8):
     // resource connections
@@ -112,7 +112,7 @@ end tangprimer20k
 object atumA3Nano:
   import dfhdl.platforms.devboards.terasic.Atum_A3_Nano
   import dfhdl.platforms.ips.alteraintel.{intel_user_rst_clkgate, intelclkctrl}
-  given options.CompilerOptions.Backend          = backends.verilog
+  given options.CompilerOptions.Backend          = _.verilog
   given options.ProgrammerOptions.Tool           = tools.programmers.vendor
   given options.ElaborationOptions.DefaultRstCfg = hw.constraints.timing.reset()
 
