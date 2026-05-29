@@ -9,7 +9,7 @@ import dfhdl.*
   * @param MIN_COUNT
   *   until reaches this wait time
   */
-@top class ButtonPulse(
+class ButtonPulse(
     val MAX_COUNT: Int <> CONST = 8,
     val DEC_COUNT: Int <> CONST = 2,
     val MIN_COUNT: Int <> CONST = 1

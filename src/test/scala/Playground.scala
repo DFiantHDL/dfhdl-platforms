@@ -4,7 +4,7 @@ import dfhdl.platforms.resources.*
 import dfhdl.hw.constraints.*
 
 object common:
-  @top class Demo(val ledsCnt: Int = 8) extends RTDesign:
+  class Demo(val ledsCnt: Int = 8) extends RTDesign:
     val leds    = Bits(ledsCnt) <> OUT.REG init b"1".resize(ledsCnt)
     val dir     = Bit           <> IN
     val cycles  = (CLK_FREQ * 3.sec / ledsCnt).toInt
@@ -27,7 +27,7 @@ object tinytapeout:
   import dfhdl.platforms.devboards.tinytapeout.TT08Plus
   given options.CompilerOptions.Backend = _.verilog
   import dfhdl.platforms.pmods.sipeed.{PMOD_LEDx8, PMOD_BTN4x4}
-  @top class Demo extends common.Demo(8):
+  class Demo extends common.Demo(8):
     // resource connections
     val devBoard    = TT08Plus("SKY25b")
     val ledsPmod    = PMOD_LEDx8()
@@ -44,7 +44,7 @@ object ulx3s:
   import dfhdl.platforms.devboards.radiona.ULX3S
   given options.CompilerOptions.Backend = _.verilog.v2001
   given options.ProgrammerOptions.Tool  = _.foss
-  @top class Demo extends common.Demo(8):
+  class Demo extends common.Demo(8):
     // resource connections
     val devBoard = ULX3S()
     this <> devBoard.clocks.CLK_25MHz
@@ -57,7 +57,7 @@ object nexysA7:
   import dfhdl.platforms.pmods.sipeed.PMOD_LEDx8
   given options.CompilerOptions.Backend = _.vhdl.v2008
   given options.ProgrammerOptions.Tool  = _.vendor
-  @top class Demo extends common.Demo(8):
+  class Demo extends common.Demo(8):
     // resource connections
     val devBoard = NexysA7()
     val ledsPmod = PMOD_LEDx8()
@@ -72,7 +72,7 @@ object basys3:
   import dfhdl.platforms.devboards.digilent.Basys3
   given options.CompilerOptions.Backend = _.vhdl.v2008
   given options.ProgrammerOptions.Tool  = _.vendor
-  @top class Demo extends common.Demo(16):
+  class Demo extends common.Demo(16):
     // resource connections
     val devBoard = Basys3()
     this <> devBoard.clocks.CLK_100MHz
@@ -85,7 +85,7 @@ object deca:
   import dfhdl.platforms.devboards.terasic.DECA
   given options.CompilerOptions.Backend = _.vhdl.v93
   given options.ProgrammerOptions.Tool  = _.vendor
-  @top class Demo extends common.Demo(8):
+  class Demo extends common.Demo(8):
     // resource connections
     val devBoard = DECA()
     this <> devBoard.clocks.MAX10_CLK1_50MHz
@@ -98,7 +98,7 @@ object tangprimer20k:
   import dfhdl.platforms.pmods.digilent.Pmod8LD
   given options.CompilerOptions.Backend = _.verilog.sv2005
   given options.ProgrammerOptions.Tool  = _.foss
-  @top class Demo extends common.Demo(8):
+  class Demo extends common.Demo(8):
     // resource connections
     val devBoard = TangPrimer20K()
     val ledsPmod = Pmod8LD()
@@ -116,7 +116,7 @@ object atumA3Nano:
   given options.ProgrammerOptions.Tool           = _.vendor
   given options.ElaborationOptions.DefaultRstCfg = hw.constraints.timing.reset()
 
-  @top class DemoTop extends RTDesign:
+  class DemoTop extends RTDesign:
     val clk  = Clk     <> IN
     val leds = Bits(4) <> OUT
     val dir  = Bit     <> IN
@@ -142,7 +142,7 @@ object atumA3Nano:
 end atumA3Nano
 //
 // object systemSim:
-//   @top class Test extends RTDesign:
+//   class Test extends RTDesign:
 //     val ulx3sDemo        = ulx3s.Demo()
 //     val nexysA7Demo      = nexysA7.Demo()
 //     val decaDemo         = deca.Demo()

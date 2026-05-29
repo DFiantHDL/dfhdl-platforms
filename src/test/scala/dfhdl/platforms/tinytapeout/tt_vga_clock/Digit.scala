@@ -1,7 +1,7 @@
 package dfhdl.platforms.tinytapeout.tt_vga_clock
 import dfhdl.*
 
-@top class Digit(
+class Digit(
     val DIGIT_INDEX_FILE: String = "tt_vga_clock/digit_index.hex",
     val COL_INDEX_FILE: String = "tt_vga_clock/col_index.hex",
     val COLOR_INDEX_FILE: String = "tt_vga_clock/color.bin",

@@ -8,7 +8,7 @@ import hw.constraints.*
 class vga_clk_gen extends clk_wiz()
 
 @timing.clock(rate = 100.MHz, grpName = "main")
-@top class nexys_vga_clock extends RTDesign:
+class nexys_vga_clock extends RTDesign:
   val clk = Clk <> IN
   val adj_hrs = Bit <> IN
   val adj_min = Bit <> IN
