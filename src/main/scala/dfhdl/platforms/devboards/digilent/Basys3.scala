@@ -22,7 +22,7 @@ import dfhdl.*
 import dfhdl.hw.constraints.*
 
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
-@toolOptions("openFPGALoader" -> "-b basys3")
+@platformID("basys3")
 class Basys3 extends DevBoard:
   @deviceProperties(
     "CONFIG_VOLTAGE" -> "3.3",

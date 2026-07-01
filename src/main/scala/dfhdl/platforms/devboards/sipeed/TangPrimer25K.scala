@@ -368,7 +368,7 @@ end TangPrimer25KBase
 │║      J6      ║     ║      J5      ║    ║      J4      ║│
 └╚══════════════╝─────╚══════════════╝────╚══════════════╝┘
  */
-@toolOptions("openFPGALoader" -> "-b tangprimer25k")
+@platformID("tangprimer25k")
 class TangPrimer25K extends DevBoard:
   val core = TangPrimer25KCore()
   val base = TangPrimer25KBase()

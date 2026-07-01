@@ -729,7 +729,7 @@ end TangPrimer20KDock
 
 /*       TangPrimer20K Dock Board + SOM Board
  */
-@toolOptions("openFPGALoader" -> "-b tangprimer20k")
+@platformID("tangprimer20k")
 class TangPrimer20K extends DevBoard:
   val som  = TangPrimer20KSOM()
   val dock = TangPrimer20KDock()

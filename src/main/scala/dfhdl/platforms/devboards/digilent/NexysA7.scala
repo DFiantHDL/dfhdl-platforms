@@ -23,7 +23,7 @@ import dfhdl.*
 import dfhdl.hw.constraints.*
 import dfhdl.platforms.devices.Bank
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
-@toolOptions("openFPGALoader" -> "-b nexys_a7_100")
+@platformID("nexys_a7_100")
 class NexysA7 extends DevBoard:
   @deviceProperties(
     "CONFIG_VOLTAGE" -> "3.3",

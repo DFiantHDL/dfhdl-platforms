@@ -21,7 +21,7 @@ import dfhdl.hw.constraints.*
 import dfhdl.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
-@toolOptions("openFPGALoader" -> "-b deca")
+@platformID("deca")
 class DECA extends DevBoard:
   @deviceProperties(
     "AUTO_RESTART_CONFIGURATION" -> "ON",
