@@ -92,21 +92,22 @@ class VGA_Clock extends RTDesign:
     hrs_u.din := hrs_u + 1;
   end if
 
-  number := (if (x_block < FONT_W * 1) hrs_d
+  number :=
+    (if (x_block < FONT_W * 1) hrs_d
+     else
+       if (x_block < FONT_W * 2) hrs_u
+       else
+         if (x_block < FONT_W * 3) COLON
+         else
+           if (x_block < FONT_W * 4) min_d
+           else
+             if (x_block < FONT_W * 5) min_u
              else
-               if (x_block < FONT_W * 2) hrs_u
+               if (x_block < FONT_W * 6) COLON
                else
-                 if (x_block < FONT_W * 3) COLON
+                 if (x_block < FONT_W * 7) sec_d
                  else
-                   if (x_block < FONT_W * 4) min_d
-                   else
-                     if (x_block < FONT_W * 5) min_u
-                     else
-                       if (x_block < FONT_W * 6) COLON
-                       else
-                         if (x_block < FONT_W * 7) sec_d
-                         else
-                           if (x_block < FONT_W * 8) sec_u else BLANK)
+                   if (x_block < FONT_W * 8) sec_u else BLANK)
 
   val digit = Digit(
     FONT_W = FONT_W,
