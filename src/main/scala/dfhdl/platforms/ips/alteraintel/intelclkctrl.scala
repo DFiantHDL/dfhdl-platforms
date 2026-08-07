@@ -23,7 +23,6 @@
 package dfhdl.platforms.ips.alteraintel
 import dfhdl.*
 import intelclkctrl.*
-import scala.annotation.targetName
 import dfhdl.internals.metaContextForward
 import dfhdl.core.DFValAny
 
@@ -96,7 +95,7 @@ object intelclkctrl:
     case NegativeLatch, NoRegister
   type ClockDivisionOutputs = 1 | 2 | 4
 
-  @targetName("intelclkctrl")
+  @hw.annotation.setName("intelclkctrl")
   protected class internal_intelclkctrl(
       val NUM_CLOCKS: Int <> CONST,
       val GLITCH_FREE_SWITCHOVER: Int <> CONST,

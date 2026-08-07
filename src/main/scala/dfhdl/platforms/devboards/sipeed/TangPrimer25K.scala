@@ -20,8 +20,8 @@ import dfhdl.platforms.resources.*
 import dfhdl.platforms.devices.gowin.GW5A_LV25MG121
 import dfhdl.platforms.pmods.*
 import dfhdl.hw.constraints.*
+import dfhdl.hw
 import TangPrimer25K.BTBConn
-import scala.annotation.targetName
 import dfhdl.MHz
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
@@ -46,11 +46,11 @@ class TangPrimer25KCore extends Board:
   clocks // touch to force execution
 
   object power:
-    @targetName("VCCIO0_1")
+    @hw.annotation.setName("VCCIO0_1")
     val `VCCIO0/1` = Power()
-    @targetName("VCCIO2_3")
+    @hw.annotation.setName("VCCIO2_3")
     val `VCCIO2/3` = Power()
-    @targetName("VCCIO6_7")
+    @hw.annotation.setName("VCCIO6_7")
     val `VCCIO6/7` = Power()
     val VDD_3V3    = Power(3.3)
     val VDD_2V5    = Power(2.5)
@@ -173,11 +173,11 @@ end TangPrimer25KCore
 
 class TangPrimer25KBase extends Board:
   object power:
-    @targetName("VCCIO0_1")
+    @hw.annotation.setName("VCCIO0_1")
     val `VCCIO0/1` = Power()
-    @targetName("VCCIO2_3")
+    @hw.annotation.setName("VCCIO2_3")
     val `VCCIO2/3` = Power()
-    @targetName("VCCIO6_7")
+    @hw.annotation.setName("VCCIO6_7")
     val `VCCIO6/7` = Power()
     // here these power pins are not the source, since the core
     // board defines their actual power source. so they are not

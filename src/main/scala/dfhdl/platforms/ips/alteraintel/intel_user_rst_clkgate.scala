@@ -23,7 +23,6 @@
 package dfhdl.platforms.ips.alteraintel
 import dfhdl.*
 import intel_user_rst_clkgate.*
-import scala.annotation.targetName
 
 class intel_user_rst_clkgate(
     outputType: OutputType,
@@ -43,7 +42,7 @@ object intel_user_rst_clkgate:
       case ResetInterface   => "Reset Interface"
       case ConduitInterface => "Conduit Interface"
 
-  @targetName("intel_user_rst_clkgate")
+  @hw.annotation.setName("intel_user_rst_clkgate")
   protected class intel_user_rst_clkgate_internal(
       val outputType: String <> CONST,
       val version: String <> CONST = ""

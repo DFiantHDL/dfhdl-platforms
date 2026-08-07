@@ -21,7 +21,6 @@ import dfhdl.platforms.devices.gowin.GW2A_LV18PG256
 import dfhdl.platforms.pmods.*
 import dfhdl.hw.constraints.*
 import TangPrimer20K.DockConn
-import scala.annotation.targetName
 import dfhdl.*
 // scalafmt: { align.tokens = [{code = "<>"}, {code = "="}, {code = "->"}]}
 
@@ -227,9 +226,9 @@ class TangPrimer20KSOM(
   clocks // touch to force execution
 
   object power:
-    @targetName("VCCIO0_1")
+    @hw.annotation.setName("VCCIO0_1")
     val `VCCO0&1` = Power()
-    @targetName("F_VCCIO0_1")
+    @hw.annotation.setName("F_VCCIO0_1")
     val `F_VCCO0&1` = Power()
     val VCCO7       = Power()
     val F_VCCO7     = Power()
